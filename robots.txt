@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tungtheordau917.github.io/mainofficial-i-game-com-cn/sitemap.xml

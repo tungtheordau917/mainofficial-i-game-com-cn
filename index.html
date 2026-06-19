@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 稳定入口与知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e2a36;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* header / 标题区 */
+        .site-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #dae0e6;
+            padding-bottom: 1.2rem;
+        }
+
+        .site-header h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #173042;
+        }
+
+        .site-header p {
+            color: #4a5b6a;
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* 卡片通用设计 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .card-grid .span-2 {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e7ed;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.02);
+            padding: 1.5rem 1.8rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.03);
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1d3344;
+            border-left: 4px solid #3e6b8c;
+            padding-left: 0.7rem;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            margin-bottom: 0.4rem;
+            color: #254a5e;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #2b3e4d;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding: 0.3rem 0;
+            padding-left: 0.9rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #3e6b8c;
+            font-weight: 700;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: #eaf0f5;
+            color: #1d4055;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 提示区（醒目但克制） */
+        .notice-card {
+            background: #f8fafc;
+            border-left: 5px solid #3e6b8c;
+        }
+
+        .notice-card p {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .notice-card strong {
+            color: #1d4055;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #1f5b7a;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            border-bottom: 1px solid #1f5b7a;
+            color: #0a3a4e;
+        }
+
+        .inline-link {
+            font-weight: 500;
+        }
+
+        /* faq 摘要区 */
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            color: #1f3a48;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-item .a {
+            color: #3a4f5e;
+            font-size: 0.92rem;
+        }
+
+        /* 底部 */
+        .site-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #dae0e6;
+            font-size: 0.85rem;
+            color: #4f6677;
+            text-align: center;
+        }
+
+        .site-footer .inline-link {
+            font-weight: 400;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .card {
+                padding: 1.2rem 1.2rem;
+            }
+            .site-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <!-- 标题区 / hero 精简 -->
+        <header class="site-header">
+            <h1>爱游戏 · 知识库入口</h1>
+            <p>稳定访问 · 信息索引 · 使用说明</p>
+        </header>
+
+        <!-- 卡片网格：目录感布局 -->
+        <div class="card-grid">
+            <!-- 卡片1：关于爱游戏 (介绍区) -->
+            <div class="card">
+                <h2>关于爱游戏</h2>
+                <p><a href="https://mainofficial-i-game.com.cn" class="inline-link">爱游戏</a> 是一个面向游戏玩家与开发者的信息聚合站点，提供稳定的内容索引与资源导航。本站点聚焦于游戏资讯、工具推荐以及社区知识沉淀，不参与任何违规运营或诱导行为。</p>
+                <p style="margin-top: 0.7rem;">平台保持中立，所有内容均来源于公开可查的渠道，并定期核对链接的有效性。无论你是寻找某款游戏的背景资料，还是希望快速定位相关讨论区，<a href="https://mainofficial-i-game.com.cn" class="inline-link">爱游戏</a> 都能作为可靠的起始页。</p>
+            </div>
+
+            <!-- 卡片2：页面功能说明 (说明区) -->
+            <div class="card">
+                <h2>页面功能说明</h2>
+                <p>当前页面作为知识库的目录入口，主要承担以下作用：</p>
+                <ul>
+                    <li>提供 <a href="https://mainofficial-i-game.com.cn">爱游戏</a> 的稳定链接，避免因网络波动丢失访问路径。</li>
+                    <li>归纳常见问题与使用提示，降低新用户的摸索成本。</li>
+                    <li>汇总相关资源类别，方便按需跳转至详细分区。</li>
+                    <li>记录平台基本信息，帮助用户判断内容适用性。</li>
+                </ul>
+                <p style="margin-top: 0.6rem; font-size: 0.9rem; color: #476375;">所有说明均基于长期维护经验，非一次性草稿。</p>
+            </div>
+
+            <!-- 卡片3：提示区 (高亮) 跨列 -->
+            <div class="card notice-card span-2">
+                <h2>使用提示</h2>
+                <p><strong>▪</strong> 如遇链接异常，请优先确认网络环境，或稍后重试。平台未设置任何强制跳转或弹窗。<br>
+                <strong>▪</strong> 建议将 <a href="https://mainofficial-i-game.com.cn">爱游戏</a> 添加至书签栏，以便快速调取。<br>
+                <strong>▪</strong> 知识库内容持续更新，部分历史条目可能标记“存档”，请注意条目右上角的状态标签。<br>
+                <strong>▪</strong> 本站不收集用户隐私数据，不要求注册或登录。</p>
+            </div>
+
+            <!-- 卡片4：相关信息区 (场景与类别) -->
+            <div class="card">
+                <h2>相关信息 · 适用场景</h2>
+                <p><span class="tag">游戏背景查阅</span><span class="tag">工具索引</span><span class="tag">社区讨论导航</span><span class="tag">版本更新记录</span><span class="tag">开发者参考</span></p>
+                <p style="margin-top: 0.8rem;">无论你是普通玩家、业余爱好者还是独立开发者，都能在 <a href="https://mainofficial-i-game.com.cn">爱游戏</a> 找到对应分类。内容覆盖主流平台、独立作品、经典系列以及实用软件。每个分类页都附有简要说明与相关外部链接（非商业推广）。</p>
+                <p style="margin-top: 0.5rem;">知识库也整理了一份 <strong>常见资源索引</strong>，包括模拟器、修改器、Mod 社区、Wiki 站点等，部分条目由社区志愿者维护。</p>
+            </div>
+
+            <!-- 卡片5：FAQ 摘要 (典型问题) -->
+            <div class="card">
+                <h2>FAQ 摘要</h2>
+                <div class="faq-item">
+                    <div class="q">Q：如何确认链接指向的是最新版内容？</div>
+                    <div class="a">A：<a href="https://mainofficial-i-game.com.cn">爱游戏</a> 主域名长期固定，如有结构性变更会在站内公告栏说明。建议定期查看首页更新日志。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">Q：网站是否收录第三方商业广告？</div>
+                    <div class="a">A：不收录。所有链接均为非盈利性资源或社区地址，若发现异常条目可反馈至维护邮箱。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">Q：移动端显示是否正常？</div>
+                    <div class="a">A：页面采用响应式布局，在手机与平板上均可获得良好阅读体验。</div>
+                </div>
+                <p style="margin-top: 0.7rem; font-size: 0.9rem;">更多问答请直接访问 <a href="https://mainofficial-i-game.com.cn">爱游戏</a> 内的帮助分区。</p>
+            </div>
+        </div>
+
+        <!-- 底部声明 -->
+        <footer class="site-footer">
+            <p>本页面为知识库入口，内容仅供参考，不构成任何形式的指导或承诺。<br>
+            主站由 <a href="https://mainofficial-i-game.com.cn" class="inline-link">爱游戏</a> 运营，所有权利归各自权利人所有。 · 页面版本 v1.2</p>
+        </footer>
+    </div>
+</body>
+</html>
