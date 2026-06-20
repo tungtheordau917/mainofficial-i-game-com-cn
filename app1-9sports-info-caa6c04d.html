@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游体育 · 活力运动体验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde9e0 0%, #fbd2b6 50%, #f7c3a0 100%);
+            min-height: 100vh;
+            padding: 2rem 1.2rem;
+            display: flex;
+            justify-content: center;
+            color: #2d2a27;
+        }
+
+        .page {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        /* 主内容卡片 */
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px rgba(140, 80, 40, 0.18), 0 8px 16px rgba(0, 0, 0, 0.04);
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.25s;
+        }
+
+        .card:hover {
+            box-shadow: 0 24px 48px rgba(160, 90, 50, 0.22);
+        }
+
+        /* hero 区 */
+        .hero {
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(130deg, #a45c3a, #d47b4a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .sub {
+            font-size: 1.2rem;
+            color: #5d473a;
+            background: rgba(215, 150, 110, 0.18);
+            display: inline-block;
+            padding: 0.3rem 1.6rem;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            margin-top: 1.2rem;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #3d342e;
+        }
+
+        /* 区域标题 */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.4rem;
+            padding-left: 0.2rem;
+            border-left: 5px solid #d4865a;
+            padding-left: 0.9rem;
+            color: #3f2f26;
+        }
+
+        .section-title span {
+            background: #f2d6c4;
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6d4b34;
+            margin-left: 0.6rem;
+        }
+
+        /* 优势网格 */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        .advantage-item {
+            background: #f9ede6;
+            border-radius: 28px;
+            padding: 1.6rem 1.2rem;
+            text-align: center;
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.7), 0 4px 8px rgba(130, 70, 40, 0.06);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .advantage-item:hover {
+            transform: translateY(-4px);
+            background: #f7e5db;
+        }
+
+        .advantage-item .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        .advantage-item h3 {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #553d2f;
+            margin-bottom: 0.3rem;
+        }
+
+        .advantage-item p {
+            color: #5c4b40;
+            font-size: 0.92rem;
+            line-height: 1.4;
+        }
+
+        /* 介绍 / 说明 */
+        .intro-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.2rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .intro-text {
+            flex: 2;
+            min-width: 220px;
+        }
+
+        .intro-text p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .intro-highlight {
+            flex: 1.2;
+            background: #f9ede6;
+            border-radius: 32px;
+            padding: 1.6rem 1.4rem;
+            background: #f6e5db;
+            box-shadow: 0 4px 12px rgba(150, 80, 40, 0.06);
+        }
+
+        .intro-highlight p {
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .intro-highlight strong {
+            color: #9a5f3b;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: #fcf4ef;
+            border-radius: 32px;
+            padding: 1.8rem 1.8rem 1.2rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #4b382b;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+
+        .faq-item .q::before {
+            content: "▹";
+            color: #d4865a;
+            font-size: 1.2rem;
+        }
+
+        .faq-item .a {
+            color: #4a3e36;
+            margin-top: 0.25rem;
+            padding-left: 1.6rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .faq-more {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #7a5d4b;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #edd7cb;
+        }
+
+        .footer-links .copy {
+            color: #5f4c3f;
+            font-size: 0.85rem;
+        }
+
+        .footer-links .links a {
+            display: inline-block;
+            margin: 0.2rem 0.6rem 0.2rem 0;
+            padding: 0.3rem 1.2rem;
+            background: #e9d4c6;
+            border-radius: 60px;
+            color: #3f2c1f;
+            text-decoration: none;
+            font-weight: 480;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.15s;
+            box-shadow: 0 2px 6px rgba(100, 60, 30, 0.04);
+        }
+
+        .footer-links .links a:hover {
+            background: #dbb8a2;
+            transform: scale(1.02);
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: #d4865a;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-link:hover {
+            background: #b86e46;
+        }
+
+        /* 内嵌链接（句子里的） */
+        .inline-link {
+            color: #b4683f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #d7a889;
+            transition: border 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #a5582e;
+        }
+
+        /* 响应式 */
+        @media (max-width: 620px) {
+            .card {
+                padding: 1.8rem 1.3rem;
+                border-radius: 32px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .advantage-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .intro-block {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .advantage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero .sub {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Hero 区 -->
+        <div class="card">
+            <div class="hero">
+                <h1>九游体育</h1>
+                <div class="sub">运动 · 日常 · 陪伴</div>
+                <p>一个围绕运动场景搭建的小小站点，记录赛事片段、分享训练思路，也聊聊运动带来的松弛感。没有浮夸的口号，只有真实参与的痕迹。</p>
+            </div>
+        </div>
+
+        <!-- 优势区 -->
+        <div class="card">
+            <div class="section-title">几个特点 <span>轻量 · 直接</span></div>
+            <div class="advantage-grid">
+                <div class="advantage-item">
+                    <span class="icon">🏃</span>
+                    <h3>内容偏实际</h3>
+                    <p>关注的不是数据堆砌，而是运动里具体的细节与感受。</p>
+                </div>
+                <div class="advantage-item">
+                    <span class="icon">📋</span>
+                    <h3>索引清晰</h3>
+                    <p>分类简单，不绕路，想找什么基本两步内到达。</p>
+                </div>
+                <div class="advantage-item">
+                    <span class="icon">💬</span>
+                    <h3>保持开放</h3>
+                    <p>不搞封闭圈子，有想法可以直接留言讨论。</p>
+                </div>
+                <div class="advantage-item">
+                    <span class="icon">📱</span>
+                    <h3>适配多屏</h3>
+                    <p>手机、平板、电脑都能舒服地浏览内容。</p>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #4f3b2f; font-size: 0.95rem;">这些特点来自日常使用中的积累，谈不上完美，但一直在调整。</p>
+        </div>
+
+        <!-- 说明区 + 可信角度 -->
+        <div class="card">
+            <div class="section-title">关于站点与初衷</div>
+            <div class="intro-block">
+                <div class="intro-text">
+                    <p>九游体育 最初只是个人兴趣的整理夹，后来慢慢有了更多运动相关的内容。没有复杂的商业背景，就是一个持续更新的体育类信息页面。</p>
+                    <p>内容来源包括日常观赛笔记、基础训练方法总结、以及一些运动装备的实用反馈。所有信息都标注了参考来源或实践感受，不会为了热度编造夸张标题。</p>
+                    <p>如果你也喜欢运动或者想了解某项运动的基本情况，可以从 <a href="https://app1-9sports.com" class="inline-link">九游体育</a> 的导航栏找起。页面结构比较直白，没有隐藏跳转或诱导下载。</p>
+                </div>
+                <div class="intro-highlight">
+                    <p><strong>可信说明</strong> · 站点不收集多余隐私，不嵌入第三方跟踪脚本。所有链接都指向公开内容或官方信息页。如果有不准确的地方，可以通过页面底部方式反馈，会尽快核实修正。</p>
+                    <p style="margin-top: 0.8rem;">运营者本身也是普通运动爱好者，不卖课、不搞排名，纯粹分享。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="card">
+            <div class="section-title">常见疑问 · 摘要</div>
+            <div class="faq-mini">
+                <div class="faq-item">
+                    <div class="q">适合完全没运动基础的人看吗？</div>
+                    <div class="a">大部分内容都是从零开始记录的，包括一些入门动作拆解，不会预设你已经很专业。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">内容更新频率怎样？</div>
+                    <div class="a">不固定，但每月至少会有 3–5 篇新增或修订。偶尔会因为季节赛事集中更新。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">有没有推荐的运动装备？</div>
+                    <div class="a">会提到一些自用过的物品，但不会直接挂购买链接，只描述实际使用体验。</div>
+                </div>
+                <div class="faq-more">—— 更多问题可以在站内「问问」板块留言</div>
+            </div>
+        </div>
+
+        <!-- 底部链接 -->
+        <div class="card" style="padding-bottom: 1.8rem;">
+            <div class="footer-links">
+                <div class="copy">© 九游体育 · 保持运动</div>
+                <div class="links">
+                    <a href="https://app1-9sports.com">九游体育</a>
+                    <a href="#">内容索引</a>
+                    <a href="#">联系</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
