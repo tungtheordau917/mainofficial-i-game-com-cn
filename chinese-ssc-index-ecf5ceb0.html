@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一份资料的整理 · 时时彩信息索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f3f2ef;
+            color: #1f2a3a;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: #19212b;
+            background-image: radial-gradient(circle at 20% 30%, #2c3a4a 0%, #0f151c 100%);
+            color: #e7e9ed;
+            padding: 4rem 2rem 3.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: #f3f2ef;
+            border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero .tagline {
+            font-size: 0.9rem;
+            color: #a7b2c2;
+            letter-spacing: 0.3em;
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: -0.5rem auto 3rem;
+            padding: 0 1.6rem;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
+            padding: 2.2rem 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 3rem 1.2rem 2.6rem; }
+            .hero h1 { font-size: 1.7rem; }
+            .card { padding: 1.8rem 1.4rem; }
+        }
+
+        .opening {
+            font-size: 1.2rem;
+            font-weight: 350;
+            color: #2c3e50;
+            border-left: 4px solid #6a7f9b;
+            padding-left: 1.4rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.9;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #151f2c;
+            margin: 1.6rem 0 1rem;
+            border-bottom: 1px solid #e0e3e8;
+            padding-bottom: 0.3rem;
+            letter-spacing: 0.02em;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.65rem 0;
+            display: flex;
+            gap: 0.8rem;
+            align-items: baseline;
+            border-bottom: 1px dashed #eaecef;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list .icon {
+            display: inline-block;
+            min-width: 1.6rem;
+            color: #5d7189;
+            font-weight: 300;
+        }
+
+        .feature-list strong {
+            font-weight: 500;
+            color: #1f2a3a;
+        }
+
+        .scene-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.2rem 0 0.2rem;
+        }
+
+        @media (max-width: 520px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scene-item {
+            background: #f6f7fa;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .scene-item:hover {
+            background: #eceff4;
+        }
+
+        .scene-item .label {
+            font-weight: 500;
+            color: #2e4059;
+            margin-bottom: 0.25rem;
+        }
+
+        .scene-item p {
+            color: #3f4e62;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .faq-mini {
+            background: #f9fafb;
+            border-radius: 18px;
+            padding: 1.2rem 1.6rem;
+            margin-top: 1.4rem;
+        }
+
+        .faq-mini details {
+            margin: 0.6rem 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1f2a3a;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini summary::marker {
+            color: #6a7f9b;
+        }
+
+        .faq-mini .answer {
+            padding: 0.4rem 0.6rem 0.2rem 1.2rem;
+            color: #3a4b5e;
+            font-size: 0.95rem;
+        }
+
+        .mild-ending {
+            margin: 2rem 0 1.2rem;
+            padding: 1.4rem 1.8rem;
+            background: #eff1f5;
+            border-radius: 20px;
+            font-size: 1rem;
+            color: #1e2a38;
+            text-align: center;
+        }
+
+        .mild-ending a {
+            color: #2e5f8a;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px solid #b4c6db;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .mild-ending a:hover {
+            color: #1a4060;
+            border-bottom-color: #1a4060;
+        }
+
+        .inline-link {
+            color: #2e5f8a;
+            text-decoration: none;
+            border-bottom: 1px solid #bccddd;
+            font-weight: 450;
+            transition: border-color 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #1f4a6e;
+            color: #1a4060;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #7b8a9e;
+            text-align: center;
+            margin: 2.8rem 0 2rem;
+            border-top: 1px solid #dbdfe4;
+            padding-top: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>把分散的，串起来</h1>
+        <div class="tagline">一份个人向的资料整理 · 索引与笔记</div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <div class="opening">
+                从零散到聚合——当你在网络里搜寻关于<span class="inline-link">时时彩</span>的信息时，常常会碰到碎片、术语、规则片段，以及不同方向的讨论。这份页面尝试扮演一个轻量索引的角色：不评判、不夸大，只把那些值得留意的脉络和模块聚拢，方便你按图索骥。
+            </div>
+
+            <!-- 承接段落 -->
+            <p style="margin-bottom:1rem;">
+                去年冬天开始整理书签和笔记，发现关于<span class="inline-link">时时彩</span>的靠谱资料分散在好几个角落：有的在旧论坛的精华帖，有的藏在数据网站的说明里，还有一部分是玩家自己整理的策略笔记。于是花了些时间把它们分门别类，去掉了过时的链接，补充了基础术语对照。下面的清单就是那次整理的副产品，每个条目都指向一个相对清晰的资料方向。
+            </p>
+
+            <!-- 特点列表 -->
+            <h2 class="section-title">这个索引里有什么</h2>
+            <ul class="feature-list">
+                <li><span class="icon">📋</span><strong>规则基底</strong> —— 包括玩法类型、开奖频率、返奖率的基本说明，以及各地不同版本之间的细微差异。</li>
+                <li><span class="icon">📊</span><strong>概率与算法</strong> —— 常见组合的中奖概率计算、冷热号统计逻辑、遗漏数据的使用前提与局限。</li>
+                <li><span class="icon">📂</span><strong>历史数据存档</strong> —— 部分公开期次记录、走势图生成工具入口，以及数据清洗的小技巧。</li>
+                <li><span class="icon">🧩</span><strong>术语手册</strong> —— 跨度、和值、组选、直选、胆拖…… 每个术语附一句话解释与举例。</li>
+                <li><span class="icon">🔗</span><strong>延伸阅读</strong> —— 数学原理、博弈论入门、行为经济学中的随机性认知，与<span class="inline-link">时时彩</span>相关的背景知识。</li>
+            </ul>
+
+            <!-- 场景/应用 -->
+            <h2 class="section-title">适合谁翻阅</h2>
+            <div class="scene-grid">
+                <div class="scene-item">
+                    <div class="label">🗂️ 资料整理者</div>
+                    <p>想把零散笔记整合成结构化的知识卡片，或者需要一份术语对照表作为参考基准。</p>
+                </div>
+                <div class="scene-item">
+                    <div class="label">🧮 数据分析爱好者</div>
+                    <p>对概率计算、历史波动率感兴趣，想用真实数据练手，但不想从头爬取。</p>
+                </div>
+                <div class="scene-item">
+                    <div class="label">📚 规则研读者</div>
+                    <p>刚接触这类数字游戏，希望清晰了解不同玩法的区别以及返奖机制。</p>
+                </div>
+                <div class="scene-item">
+                    <div class="label">✍️ 内容写作者</div>
+                    <p>需要准确引用规则、术语或背景信息，避免被网上互相矛盾的帖子误导。</p>
+                </div>
+            </div>
+
+            <!-- FAQ 摘要 -->
+            <div class="faq-mini">
+                <h3 style="font-weight:400; font-size:1rem; margin-bottom:0.4rem; color:#2b3d54;">📌 整理时常见的小疑问</h3>
+                <details>
+                    <summary>这些资料会定期更新吗？</summary>
+                    <div class="answer">目前是个人维护的静态索引，遇到规则调整或链接失效会不定期修正。你可以在 <a href="https://chinese-ssc.com" class="inline-link">时时彩</a> 主站上找到更新说明。</div>
+                </details>
+                <details>
+                    <summary>为什么没有策略推荐或投注建议？</summary>
+                    <div class="answer">这个索引定位是「资料工具」，而不是攻略。我们更希望提供客观的规则与概率基础，让每个人自己判断。</div>
+                </details>
+                <details>
+                    <summary>我可以复制这些内容用于自己的项目吗？</summary>
+                    <div class="answer">术语解释和基础规则属于公共知识，但排版与汇编方式保留版权。引用时标注出处即可。</div>
+                </details>
+            </div>
+
+            <!-- 温和结尾 + 必须的 a 标签 -->
+            <div class="mild-ending">
+                信息整理是一种安静的乐趣。如果你也在梳理关于 <a href="https://chinese-ssc.com">时时彩</a> 的资料，希望这份索引能帮你省下一些翻找的时间，把精力留给更核心的理解与判断。
+            </div>
+
+            <p style="font-size:0.92rem; color:#4c5d72; margin-top:1.6rem;">
+                最后提醒一点：网络上的信息良莠不齐，即使是整理过的索引也无法保证完全无错。保持交叉验证的习惯，比依赖单一来源更重要。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            —— 索引版本 2025 · 持续缓慢生长 ——
+        </div>
+    </main>
+</body>
+</html>
